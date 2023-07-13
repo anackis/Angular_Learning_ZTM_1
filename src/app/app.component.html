@@ -1,18 +1,52 @@
 
 
+
+
+
+<p *ngIf="blueClass">Button is Blue.</p>
+
+<!-- <ng-template [ngIf]="blueClass">
+  <p>Button is Blue.</p>
+</ng-template> -->
+
+<button 
+  (click)="blueClass = !blueClass"
+  [ngClass]="{ blue: blueClass }"
+  [ngStyle]="{ 'font-size.px': fontSize }"
+>
+  Chnage
+</button>
+
+<hr>
+
 <input (keyup)="changeImage($event)" [value]="imgURL">
 
-
-<app-post [postImg]="imgURL" (imgSelected)="logImg($event)">
-  <p>Some Caption</p>
+ 
+<app-post 
+  *ngFor="let img of imgs; let i = index" 
+  [postImg]="img" 
+  (imgSelected)="logImg($event)"
+>
+  <p>{{ i + 1 }}Some Caption</p>
 </app-post>
+  <!-- [postImg]="imgURL"  -->
 <!-- <app-post [postImg]="imgURL"></app-post> -->
 <!-- <app-post [img]="imgURL"></app-post> -->
 <!-- <img [src]="imgURL" alt="test img"> -->
 
 
 
-<h1>Hello {{ name.toUpperCase() }} !</h1>
+<h1>Hello {{ name | titlecase }} !</h1>
+<!-- <h1>Hello {{ name.toUpperCase() }} !</h1> -->
 <h2>Hello {{ getName() }} !</h2>
 <h3>Hello Git trst</h3>
 <p>{{ 15 + 13 }}</p> 
+<p>{{ currentDate | date: 'short' }}</p>
+<!-- <p>{{ currentDate | date: 'MMMM d' }}</p> -->
+<p>{{ cost | currency: 'EUR' }}</p>
+<p>{{ temperature | number: '1.2-5' }}</p>
+<!-- <p>{{ temperature | number: '1.0-0' }}</p> -->
+<pre>{{ pizza | json}}</pre>
+
+
+
